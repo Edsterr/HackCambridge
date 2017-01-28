@@ -4,7 +4,7 @@ from django.contrib.auth.models import User
 
 # Create your models here.
 class UserProfile(models.Model):
-    user = models.OneToOneField("User")
+    user = models.OneToOneField(User)
 
 
 # Represents some interval of time that the user is working
@@ -16,14 +16,14 @@ class UserRecord(models.Model):
 
 
 # An interval of time and an associated interval of productive time
-class ProductivityInterval:
+class ProductivityInterval(models.Model):
     time_productive = models.DurationField()
     time_total = models.DurationField()
 
 
 #Represents a git repository
 class Repository(models.Model):
-    url = models.CharField(unique=True)
+    url = models.CharField(max_length=200, unique=True)
     contributors = models.ManyToManyField("UserProfile")
 
 
