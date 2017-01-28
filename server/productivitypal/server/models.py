@@ -1,29 +1,41 @@
 from django.db import models
 from django.contrib.auth.models import User
 
+
 # Create your models here.
 class UserProfile(models.Model):
-    user = models.OneToOneField("User")
+    user = models.OneToOneField(User)
 
 
-class ProductivityInterval(models.Model):
+# Represents some interval of time that the user is working
+# Allows historical searching of user data
+class UserRecord(models.Model):
     user_profile = models.ForeignKey("UserProfile")
     time_start = models.DateTimeField()
     time_end = models.DateTimeField()
 
 
+# An interval of time and an associated interval of productive time
+class ProductivityInterval(models.Model):
+    time_productive = models.DurationField()
+    time_total = models.DurationField()
+
+
+#Represents a git repository
 class Repository(models.Model):
-    url = models.CharField(unique=True)
+    url = models.CharField(max_length=200, unique=True)
     contributors = models.ManyToManyField("UserProfile")
 
+
+#Represents work done on a repository over a productivity interval
 class RepositoryInterval:
-    productivity_interval = models.ForeignKey("ProductivityInterval")
     repository = models.ForeignKey("Repository")
     lines = models.IntegerField()
     words = models.IntegerField()
-
-
-class BrowsingInterval(models.Model):
     productivity_interval = models.ForeignKey("ProductivityInterval")
-    #Productive time spent browsing
-    time_productivity = models.DurationField()
+
+
+#Represents time spent productively browsing done over a productivity interval
+class WindowInterval(models.Model):
+    user_record = models.ForeignKey("UserRecord")
+    productivity_interval = models.ForeignKey("ProductivityInterval")

@@ -19,5 +19,5 @@ from server import views
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^', include("server.views")),
+    url(r'^', include("server.urls")),
 ]
