@@ -4,7 +4,7 @@ from session import *
 async def run():
     session = create_session()
      
-    while(True):
+    while True:
         session.update_focus()
         await asyncio.sleep(0.5)
         print("Log: %s"%(str(session.focus_log )) )
