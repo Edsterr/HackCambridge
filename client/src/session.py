@@ -20,7 +20,7 @@ class Session:
     
 
     def on_press(self, event):
-        self.kb_activity.append(event)
+        self.kb_activity.append(event.__dict__)
 
     async def update_focus(self):
         window_name = self.get_focus()
