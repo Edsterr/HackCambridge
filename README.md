@@ -1,6 +1,6 @@
 ProductivityPal tm
 
-An application to quantify your productivity level and compare it with otherdevelopers.
+An application to quantify your productivity level and compare it with other developers.
 
 
 Feature list:
