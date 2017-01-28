@@ -14,7 +14,7 @@ chrome.runtime.onMessage.addListener(
 
             http.onreadystatechange = function () {//Call a function when the state changes.
                 if (http.readyState == 4 && http.status == 200) {
-                    alert(http.responseText);
+                    console.log("It just works");
                 }
             }
             http.send(params);
