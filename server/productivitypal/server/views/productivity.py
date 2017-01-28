@@ -1,6 +1,10 @@
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import render
+import json
 
-def update(request):
 
-    if(request.method == "POST"):
-        pass
+@login_required
+def addProductivityRecord(request):
+    if (request.method == "POST"):
+        JSONdict = json.loads(request.body)
+        print(JSONdict)
