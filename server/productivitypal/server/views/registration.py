@@ -3,6 +3,7 @@ from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from django.urls import reverse
+from django.views.decorators.csrf import csrf_exempt
 
 from server import forms
 
@@ -33,8 +34,12 @@ def user_register(request):
                   {'user_form': user_form, 'profile_form': profile_form, 'registered': registered})
 
 
-# Login and redirect to 2fa
+@csrf_exempt
 def user_login(request):
+
+    if(request.user.is_authenticated):
+        return HttpResponseRedirect(reverse("index"))
+
     if request.method == "POST":
         username = request.POST.get("username")
         password = request.POST.get("password")
@@ -43,11 +48,13 @@ def user_login(request):
 
         if user:
             if user.is_active:
-                login(user)
+                print(user)
+                login(request, user)
+                return HttpResponseRedirect(reverse("index"))
             else:
-                return render(request, "webapp/registration/login.html", {"error": "Account deactivated!!"})
+                return render(request, "server/registration/login.html", {"error": "Account deactivated!!"})
         else:
-            return render(request, "webapp/registration/login.html", {"error": "Incorrect username or password!!"})
+            return render(request, "server/registration/login.html", {"error": "Incorrect username or password!!"})
 
     return render(request, 'server/registration/login.html', {})
 

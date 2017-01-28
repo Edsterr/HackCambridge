@@ -1,6 +1,9 @@
 import datetime
 import platform
 
+import pyxhook
+import time
+
 class UnsupportedOSException(Exception):
     pass
 class Session:
@@ -9,7 +12,17 @@ class Session:
         self.current_focus = None
         self.time_prev = None
 
-    def update_focus(self):
+        self.kb_activity = []
+        self.kb_listener = pyxhook.HookManager()
+        self.kb_listener.KeyDown = self.on_press
+        self.kb_listener.HookKeyboard()
+        self.kb_listener.start()
+    
+
+    def on_press(self, event):
+        self.kb_activity.append(event)
+
+    async def update_focus(self):
         window_name = self.get_focus()
         time_now = datetime.datetime.now()
         if self.current_focus == window_name:

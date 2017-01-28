@@ -4,10 +4,13 @@ from server import views
 
 
 urlpatterns = [
-    url(r'^index/$', views.productivity.update, name="index"),
-    url(r'^productivity/update/$', views.productivity.update, name="productivity_update"),
+    url(r'^index/$', views.base.index, name="index"),
+    url(r'^profile/(?P<user_id>[0-9]+)/$', views.base.profile, name="profile"),
 
-    url(r'^registration/login/$', views.registration.user_login, name="user_login"),
-    url(r'^registration/register/$', views.registration.user_register, name="register"),
-    url(r'^registration/logout/$', views.registration.user_logout, name="user_logout")
+    url(r'^productivity/add_record/$', views.productivity.addProductivityRecord, name="productivity_add_record"),
+
+
+    url(r'^login/$', views.registration.user_login, name="user_login"),
+    url(r'^register/$', views.registration.user_register, name="register"),
+    url(r'^logout/$', views.registration.user_logout, name="user_logout")
 ]
