@@ -26,6 +26,8 @@ if platform.system() == "Linux":
 def create_session(**kwargs):
     if platform.system() == "Linux":
         return SessionLinux(**kwargs)
+    elif platform.system() == "Windows":
+        return SessionWindows(**kwargs) 
     else:
         raise UnsupportedOSException("Unsupported OS: %s"%(platform.system()))
 
