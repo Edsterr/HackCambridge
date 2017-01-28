@@ -13,7 +13,7 @@ async def send_data(session):
             "username":config.username,
             "password":config.password
         })
-        await asyncio.sleep(60)
+        await asyncio.sleep(10)
 
 async def run():
     session = create_session()
