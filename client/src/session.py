@@ -12,7 +12,7 @@ class Session:
         self.current_focus = None
         self.time_prev = None
 
-        self.kb_activity = ""
+        self.kb_activity = []
         self.kb_listener = pyxhook.HookManager()
         self.kb_listener.KeyDown = self.on_press
         self.kb_listener.HookKeyboard()
@@ -20,7 +20,7 @@ class Session:
     
 
     def on_press(self, event):
-        self.kb_activity += event.Key
+        self.kb_activity.append(event)
 
     async def update_focus(self):
         window_name = self.get_focus()
