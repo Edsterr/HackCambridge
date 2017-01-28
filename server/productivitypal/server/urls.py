@@ -4,7 +4,7 @@ from server import views
 
 
 urlpatterns = [
-    url(r'^index/', views.productivity.update, name="index"),
+    url(r'^index/$', views.productivity.update, name="index"),
     url(r'^productivity/update/$', views.productivity.update, name="productivity_update"),
 
     url(r'^registration/login/$', views.registration.user_login, name="user_login"),
