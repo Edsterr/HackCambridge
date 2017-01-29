@@ -14,7 +14,6 @@ def addProductivityRecord(request):
         if not JSONdict.get("time_start") or not JSONdict.get("time_end") or not JSONdict.get("time_productive"):
             return HttpResponse("No time_start or time_end or time_productive")
 
-
         try:
             data = {"time_start":JSONdict.get("time_start"),
                     "time_end":JSONdict.get("time_end"),

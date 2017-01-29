@@ -39,6 +39,7 @@ class ProfileForm(forms.ModelForm):
 class UserRecordForm(forms.ModelForm):
     time_start = forms.DateTimeField()
     time_end = forms.DateTimeField()
+    time_productive = forms.DurationField()
 
     class Meta:
         model = models.UserRecord

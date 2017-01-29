@@ -14,6 +14,7 @@ class UserRecord(models.Model):
     time_start = models.DateTimeField()
     time_end = models.DateTimeField()
     time_productive = models.DurationField()
+    emotion_data = models.TextField()
 
 
 #Represents a git repository
@@ -27,4 +28,3 @@ class RepositoryInterval(models.Model):
     repository = models.ForeignKey("Repository")
     lines = models.IntegerField()
     words = models.IntegerField()
-    productivity_interval = models.ForeignKey("ProductivityInterval")
