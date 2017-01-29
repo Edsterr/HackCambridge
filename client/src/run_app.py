@@ -17,12 +17,13 @@ async def server_login(session):
 async def send_data(session):
     while(True):
         json_data = json.dumps({
-            "focus_log":session.focus_log,
-            "kb_activity":session.kb_activity,
-            "username":config.username,
-            "password":config.password
+            "time_start":session.time_start,
+            "time_end":datetime.datetime.now(),
+            "time_productive":session.get_time_productive()
         }, default = datetime_handler)
+        print(session.kb_activity)
         response = requests.post(config.post_url + "/productivity/addrecord/",data=json_data, headers={"Content-type":"application/json","Accept":"text/plain"} )
+        session.reset_time()
         await asyncio.sleep(10)
 
 async def run():

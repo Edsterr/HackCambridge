@@ -2,7 +2,7 @@ import datetime
 import platform
 
 import pyxhook
-import time
+from website_categorize import *
 
 class UnsupportedOSException(Exception):
     pass
@@ -17,8 +17,19 @@ class Session:
         self.kb_listener.KeyDown = self.on_press
         self.kb_listener.HookKeyboard()
         self.kb_listener.start()
-    
 
+        self.time_start = datetime.datetime.now()
+    def reset_time(self):
+        self.time_start = datetime.datetime.now()
+        self.kb_activity = []
+        self.focus_log = {}
+    def get_time_productive(self):
+        total_productive = datetime.timedelta(0)
+        
+        for k,v in filter(lambda k,v: is_productive(k), self.focus_log.items()):
+            total_productive += v
+        return total_productive
+                 
     def on_press(self, event):
         self.kb_activity.append(event.__dict__)
 
