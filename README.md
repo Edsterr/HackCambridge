@@ -28,6 +28,7 @@ compares productivity data between users, rankings
 
 JSON transfer format for a data upload to the server (must authenticate with the server first):
 
+server upload url is (address)/productivity/add_record
 {
     'time_start': sometimestamp,
     'time_end': sometimestamp,
