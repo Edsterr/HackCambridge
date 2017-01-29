@@ -21,6 +21,22 @@ class ProductivityInterval(models.Model):
     time_total = models.DurationField()
 
 
+#Represents time spent productively browsing done over a productivity interval
+class WindowInterval(models.Model):
+    user_record = models.ForeignKey("UserRecord")
+    productivity_interval = models.ForeignKey("ProductivityInterval")
+
+
+
+
+
+
+
+
+
+
+
+
 #Represents a git repository
 class Repository(models.Model):
     url = models.CharField(max_length=200, unique=True)
@@ -32,10 +48,4 @@ class RepositoryInterval(models.Model):
     repository = models.ForeignKey("Repository")
     lines = models.IntegerField()
     words = models.IntegerField()
-    productivity_interval = models.ForeignKey("ProductivityInterval")
-
-
-#Represents time spent productively browsing done over a productivity interval
-class WindowInterval(models.Model):
-    user_record = models.ForeignKey("UserRecord")
     productivity_interval = models.ForeignKey("ProductivityInterval")

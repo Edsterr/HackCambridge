@@ -33,4 +33,6 @@ def addProductivityRecord(request):
         intervals = JSONdict.get("window_intervals")
         if intervals:
             for interval in intervals:
+                window = forms.WindowIntervalForm().save(commit=False)rl
+                
                 data = {""}
