@@ -13,10 +13,12 @@ def profile(request, user_id):
     user = models.UserProfile.get(user__id=user_id)
 
     if(user):
-        user_profile = models.UserRecords.objects.filter(user_profile=user.user_profile)
+        user_records = models.UserRecords.objects.filter(user_profile=user.user_profile, order_by="-time_start")
 
-
-
+        print(user_records)
         productivity_data = []
+
+
+
     return render(request, "server/base/profile.html", {"user_id":user_id,
                                                         "productivity_data":json.dumps(productivity_data)})
