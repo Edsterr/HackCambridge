@@ -28,7 +28,7 @@ class Repository(models.Model):
 
 
 #Represents work done on a repository over a productivity interval
-class RepositoryInterval:
+class RepositoryInterval(models.Model):
     repository = models.ForeignKey("Repository")
     lines = models.IntegerField()
     words = models.IntegerField()

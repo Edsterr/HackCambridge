@@ -34,3 +34,48 @@ class ProfileForm(forms.ModelForm):
     class Meta:
         model = models.UserProfile
         fields = ()
+
+
+class UserRecordForm(forms.ModelForm):
+    time_start = forms.DateTimeField()
+    time_end = forms.DateTimeField()
+
+    class Meta:
+        model = models.UserRecord
+        fields = ("time_start", "time_end")
+
+
+# An interval of time and an associated interval of productive time
+class ProductivityIntervalForm(forms.ModelForm):
+    time_productive = forms.DurationField()
+    time_total = forms.DurationField()
+
+    class Meta:
+        model = models.ProductivityInterval
+        fields = ("time_productive", "time_total")
+
+
+#Represents a git repository
+class RepositoryForm(forms.ModelForm):
+    url = forms.CharField(max_length=200)
+
+    class Meta:
+        model = models.Repository
+        fields = ("url")
+
+
+#Represents work done on a repository over a productivity interval
+class RepositoryIntervalForm(forms.ModelForm):
+    lines = models.IntegerField()
+    words = models.IntegerField()
+
+    class Meta:
+        model = models.RepositoryInterval
+        fields = ("lines", "words")
+
+
+#Represents time spent productively browsing done over a productivity interval
+class WindowIntervalForm(forms.ModelForm):
+    class Meta:
+        model = WindowIntervalForm
+        fields = ()

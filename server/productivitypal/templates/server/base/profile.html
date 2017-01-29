@@ -1,5 +1,7 @@
 {% extends "server/base/base.html" %}
 
+{% load staticfiles %}
+
 {% block titleblock %}
     Profile
 {% endblock %}
@@ -10,12 +12,13 @@
 
 
     <link rel="stylesheet" href="{% static "css/morris.css" %}">
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
+    <script src="{% static "js/jquery.min.js" %}"></script>
+    <script src="{% static "js/raphael.min.js" %}"></script>
     <script src="{% static "js/morris.min.js" %}"></script>
     {% if productivity_data %}
     <script>
         var productivity_data = {{ productivity_data|safe }};
+        
         console.log(productivity_data);
         new Morris.Line({
           // ID of the element in which to draw the chart.
