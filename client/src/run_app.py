@@ -8,6 +8,12 @@ def datetime_handler(x):
     if isinstance(x, datetime.timedelta):
         return str(x)
     return str(x)
+
+async def server_login(session):
+    json_data = json.dumps({"username":config.username, "password":config.password})
+    response = requests.post(config.post_url + "/login/")  
+    
+ 
 async def send_data(session):
     while(True):
         json_data = json.dumps({
@@ -16,13 +22,12 @@ async def send_data(session):
             "username":config.username,
             "password":config.password
         }, default = datetime_handler)
-        response = requests.post(config.post_url,data=json_data, headers={"Content-type":"application/json","Accept":"text/plain"} )
-        print("Response: " + response.text)
+        response = requests.post(config.post_url + "/productivity/addrecord/",data=json_data, headers={"Content-type":"application/json","Accept":"text/plain"} )
         await asyncio.sleep(10)
 
 async def run():
     session = create_session()
-     
+    await server_login(session) 
     asyncio.ensure_future(send_data(session))
     while True:
         await session.update_focus()
