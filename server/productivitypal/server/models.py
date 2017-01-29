@@ -13,28 +13,7 @@ class UserRecord(models.Model):
     user_profile = models.ForeignKey("UserProfile")
     time_start = models.DateTimeField()
     time_end = models.DateTimeField()
-
-
-# An interval of time and an associated interval of productive time
-class ProductivityInterval(models.Model):
     time_productive = models.DurationField()
-    time_total = models.DurationField()
-
-
-#Represents time spent productively browsing done over a productivity interval
-class WindowInterval(models.Model):
-    user_record = models.ForeignKey("UserRecord")
-    productivity_interval = models.ForeignKey("ProductivityInterval")
-
-
-
-
-
-
-
-
-
-
 
 
 #Represents a git repository
