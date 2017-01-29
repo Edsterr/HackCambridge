@@ -90,6 +90,8 @@ ENV/
 # Rope project settings
 .ropeproject
 
+#Emotion
+node_modules
 
 .idea
 .idea/*

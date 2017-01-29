@@ -1,0 +1,22 @@
+{
+  "name": "emotion",
+  "version": "1.0.0",
+  "description": "Everyone needs to know how others perceive you.",
+  "main": "index.js",
+  "scripts": {
+    "start": "live-server"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/thebeebs/emotion.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/thebeebs/emotion/issues"
+  },
+  "homepage": "https://github.com/thebeebs/emotion#readme",
+  "dependencies": {
+    "live-server": "^1.2.0"
+  }
+}
