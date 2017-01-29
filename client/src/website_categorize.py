@@ -16,7 +16,7 @@ def approx_compare(str_a, str_b):
 
 
 
-def is_productive(title, value):
+def is_productive(title):
     whitelist = ["stackoverflow", "google", "github", "superuser", "python","reddit","django","java","html","js","javascript","linux","server","css","flask","git","database","intellij","pycharm","idea","urxvt","xterm","vim","emacs","nano","~","ngrok","py","class","sh","api"]
     for x in whitelist:
         if approx_compare(x, title):

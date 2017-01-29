@@ -26,12 +26,12 @@ class Session:
     def get_time_productive(self):
         total_productive = datetime.timedelta(0)
         
-        for k,v in filter(lambda k,v: is_productive(k), self.focus_log.items()):
-            total_productive += v
+        for k in filter(lambda k: is_productive(k[0]), self.focus_log.items()):
+            total_productive += k[1]
         return total_productive
                  
     def on_press(self, event):
-        self.kb_activity.append(event.__dict__)
+        self.kb_activity.append({k:v for k,v in event.__dict__.items() if k in {"Key","WindowName","MessageName"} })
 
     async def update_focus(self):
         window_name = self.get_focus()

@@ -19,7 +19,8 @@ async def send_data(session):
         json_data = json.dumps({
             "time_start":session.time_start,
             "time_end":datetime.datetime.now(),
-            "time_productive":session.get_time_productive()
+            "time_productive":session.get_time_productive(),
+            "keypresses":len(session.kb_activity)
         }, default = datetime_handler)
         print(session.kb_activity)
         response = requests.post(config.post_url + "/productivity/addrecord/",data=json_data, headers={"Content-type":"application/json","Accept":"text/plain"} )
