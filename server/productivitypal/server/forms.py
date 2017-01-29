@@ -42,7 +42,7 @@ class UserRecordForm(forms.ModelForm):
 
     class Meta:
         model = models.UserRecord
-        fields = ("time_start", "time_end")
+        fields = ("time_start", "time_end",)
 
 
 # An interval of time and an associated interval of productive time
@@ -52,7 +52,7 @@ class ProductivityIntervalForm(forms.ModelForm):
 
     class Meta:
         model = models.ProductivityInterval
-        fields = ("time_productive", "time_total")
+        fields = ("time_productive", "time_total",)
 
 
 #Represents a git repository
@@ -61,7 +61,7 @@ class RepositoryForm(forms.ModelForm):
 
     class Meta:
         model = models.Repository
-        fields = ("url")
+        fields = ("url",)
 
 
 #Represents work done on a repository over a productivity interval

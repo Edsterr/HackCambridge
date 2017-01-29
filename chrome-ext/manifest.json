@@ -1,0 +1,42 @@
+{
+  "name": "Productiv",
+  "version": "1.0.0.0",
+  "manifest_version": 2,
+  "options_page": "options.html",
+  "description": "Productiv Borwser Extension - Take your productivity to the next level!",
+  "browser_action": {
+    "default_icon": {
+      "19": "images/icons/productiv-32.png",
+      "38": "images/icons/productiv-32.png"
+    },
+    "default_popup": "popup.html"
+  },
+  "icons": {
+    "16": "images/icons/productiv-16.png",
+    "256": "images/icons/productiv-256.png"
+  },
+  "content_security_policy": "script-src 'self' 'unsafe-eval' https://*.pusher.com; object-src 'self'",
+  "permissions": [
+    "contextMenus",
+    "activeTab",
+    "webRequest",
+    "storage",
+    "tabs",
+    "http://localhost:8136/*"
+  ],
+  "content_scripts": [
+    {
+      "matches": [
+        "<all_urls>"
+      ],
+      "js": [
+        "js/content.js"
+      ]
+    }
+  ],
+  "background": {
+    "scripts": [
+      "js/background.js"
+    ]
+  }
+}
